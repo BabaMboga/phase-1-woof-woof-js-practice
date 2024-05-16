@@ -42,8 +42,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update button text
                     const toggleButton = dogInfo.querySelector('button');
                     toggleButton.textContent = pup.isGoodDog ? 'Good Dog!' : 'Bad Dog!';
-                    
+
                 })
-            }
+                .catch(error => console.error('Error toggling good dog status:', error));
+            };
+
+            //Function to render all pups
+            const renderAllPups = () => {
+                dogBar.innerHTML = '';
+                data.forEach(pup => renderPup(pup));
+            };
+
+            // Initial render
+            renderAllPups();
+
+            // Event listener for filter button
+            filterButton.addEventListener('click', () => {
+                const filterText = filterButton.textContent;
+                if (filterText.includes('OFF')) {
+                    filterButton.textContent = 'Filter good dogs: ON';
+                    renderAllPups();
+
+                } else {
+                    filterButton.textContent = 'Filter good dogs: OFF';
+                    renderAllPups();
+                }
+            });
         })
-})
+        .catch(error => console.error('Error fetching data:', error));
+});
