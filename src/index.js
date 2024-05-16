@@ -22,6 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2>${pup.name}</h2>
                     <button>${pup.isGoodDog ? 'Good Dog!' : 'Bad Dog!'}</button>
                 `;
+
+                // Event listener for toggle good dog button
+                const toggleButton = dogInfo.querySelector('button');
+                toggleButton.addEventListener('click', () => toggleGoodDog(pup));
+            };
+
+            // Function to toggle good dog status
+            const toggleGoodDog = (pup) => {
+                pup.isGoodDog = !pup.isGoodDog;
+                fetch(`http://localhost:3000/pups/${pup.id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'ContentType' : 'application/json'
+                    },
+                    body: JSON.stringify({ isGoodDog: pup.isGoodDog})
+                })
+                .then(() => {
+                    // Update button text
+                    const toggleButton = dogInfo.querySelector('button');
+                    toggleButton.textContent = pup.isGoodDog ? 'Good Dog!' : 'Bad Dog!';
+                    
+                })
             }
         })
 })
