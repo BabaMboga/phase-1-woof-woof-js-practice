@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButton = document.getElementById('good-dog-filter');
 
     // Fetch data from the server
-    fetch('http://lcoalhost:3000/pups')
+    fetch('http://localhost:3000/pups')
         .then(response => response.json())
         .then(data => {
             // Function to render a single pup
