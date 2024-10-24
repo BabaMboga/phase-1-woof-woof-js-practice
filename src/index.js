@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButton = document.getElementById('good-dog-filter');
 
     // Fetch data from the server
-    fetch('http://localhost:3000/pups')
+    fetch('https://pseudo-data.onrender.com/pups')
         .then(response => response.json())
         .then(data => {
             // Function to render a single pup
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Function to toggle good dog status
             const toggleGoodDog = (pup) => {
                 pup.isGoodDog = !pup.isGoodDog;
-                fetch(`http://localhost:3000/pups/${pup.id}`, {
+                fetch(`https://pseudo-data.onrender.com/pups/${pup.id}`, {
                     method: 'PATCH',
                     headers: {
                         'ContentType' : 'application/json'
